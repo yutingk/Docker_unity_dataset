@@ -24,10 +24,10 @@ class blur():
             
             #copy file from dataset to blur dataset
             if (not(os.path.isdir(self.datadir + '/'+ self.datadir_blur1[i]))):
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur1[i])
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur2[i])
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur3[i])
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur4[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/' + self.datadir_blur1[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/'  + self.datadir_blur2[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/'  + self.datadir_blur3[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/'  + self.datadir_blur4[i])
             else:
                 print('Folder already exist')
                 pass
@@ -56,7 +56,7 @@ class blur():
             # print(images_path_jpg)
             print(f'Number of images in {scene}= {len(images_path_jpg)}\n')
             for i in range (len(images_path_jpg)):
-                blur_img = self.motion_blur_type(img = images_path_jpg[i], size = blur_level+2)
+                blur_img = self.motion_blur_type(img = images_path_jpg[i], size = blur_level+1)
                 cv2.imwrite(self.datadir + '/' + scene + '/' + str(i+1) + '.main.jpg', blur_img)
         print('Done') 
         
@@ -78,5 +78,5 @@ class blur():
         
         
 if __name__ == '__main__':
-    blur = blur(datadir = './dataset')
+    blur = blur(datadir = './dataset/WAM_V')
     blur.main()

@@ -56,9 +56,10 @@ class blur():
             # print(images_path_jpg)
             print(f'Number of images in {scene}= {len(images_path_jpg)}\n')
             for i in range (len(images_path_jpg)):
-                blur_img = self.motion_blur_type(img = images_path_jpg[i], size = blur_level+3)
+                blur_img = self.motion_blur_type(img = images_path_jpg[i], size = blur_level+2)
                 cv2.imwrite(self.datadir + '/' + scene + '/' + str(i+1) + '.main.jpg', blur_img)
-                
+        print('Done') 
+        
     def motion_blur_type(self, img, size = 1):
         # #blur the image
         img = cv2.imread(img)

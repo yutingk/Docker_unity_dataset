@@ -31,8 +31,8 @@ docker run \
     -e QT_X11_NO_MITSHM=1 \
     -e XAUTHORITY=$XAUTH \
     -v "$XAUTH:$XAUTH" \
-    -v "/home/$USER/Docker_unity_dataset:/home/$USER_NAME/Docker_unity_dataset" \
-    -v "/home/$USER/robotx2022-unity-dataset:/home/$USER_NAME/robotx2022-unity-dataset" \
+    -v "/home/$USER/Docker_unity_dataset:/home/$USER/Docker_unity_dataset" \
+    -v "/home/$USER/robotx2022-unity-dataset:/home/$USER/robotx2022-unity-dataset" \
     -v "/tmp/.X11-unix:/tmp/.X11-unix" \
     -v "/etc/localtime:/etc/localtime:ro" \
     -v "/dev:/dev" \

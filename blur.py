@@ -5,14 +5,15 @@ import glob
 import shutil
 
 class blur():
-    def __init__(self, datadir = './dataset'):
+    def __init__(self, datadir = './dataset', blur_level = 3):
         self.datadir = datadir
+        print(f'Dataset path : {self.datadir} \n')
         self.scenes = sorted(os.listdir(self.datadir))
         print(f'Folder in dataset : \n {self.scenes} \n')
         self.scenes_len = len(self.scenes)
-        
+        self.blur_level = blur_level
         self.datadir_blur1, self.datadir_blur2, self.datadir_blur3= [], [], []
-
+        
     def copy_folder(self):
         #creat folder
         for i in range(self.scenes_len): 
@@ -22,9 +23,9 @@ class blur():
             
             #copy file from dataset to blur dataset
             if (not(os.path.isdir(self.datadir + '/'+ self.datadir_blur1[i]))):
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur1[i])
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur2[i])
-                shutil.copytree(self.datadir + '/' + self.scenes[i], './dataset/' + self.datadir_blur3[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/' + self.datadir_blur1[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/' + self.datadir_blur2[i])
+                shutil.copytree(self.datadir + '/' + self.scenes[i], self.datadir + '/' + self.datadir_blur3[i])
             else:
                 print('Folder already exist')
                 pass
@@ -33,7 +34,7 @@ class blur():
     def read_img(self):
         blur_list = []
         
-        for num in range(1, 4): 
+        for num in range(1, self.blur_level+1): 
             datadir_blur = getattr(self, f"datadir_blur{num}")          
             for k in range(len(datadir_blur)):
                 folder = str(datadir_blur[k])
@@ -75,5 +76,6 @@ class blur():
         
         
 if __name__ == '__main__':
-    blur = blur(datadir = './dataset')
-    blur.main()
+    blur7 = blur(datadir = './dataset/SpeedBoat', blur_level = 3)
+    blur7.main()
+    
